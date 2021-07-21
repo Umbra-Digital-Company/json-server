@@ -3,5 +3,28 @@
     { "id": "client-1", "secret": "client-1-secret" },
     { "id": "client-2", "secret": "client-2-secret" },
     { "id": "client-3", "secret": "client-3-secret" }
+  ],
+  "customers": [
+    {
+      "id": "customer-1",
+      "client": "client-1",
+      "name": "John Doe",
+      "email": "john@doe.con",
+      "company": "Company 1"
+    },
+    {
+      "id": "customer-2",
+      "client": "client-1",
+      "name": "Jane Doe",
+      "email": "jane@doe.con",
+      "company": "Company 2"
+    },
+    {
+      "id": "customer-3",
+      "client": "client-2",
+      "name": "Josh Doe",
+      "email": "josh@doe.con",
+      "company": "Company 3"
+    }
   ]
 }
