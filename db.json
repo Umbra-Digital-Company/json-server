@@ -1,7 +1,7 @@
 {
   "clients": [
-    { "id": "client-1", "secret": "client-1-secret", "key": "CLIENT_KEY_1" },
-    { "id": "client-2", "secret": "client-2-secret", "key": "CLIENT_KEY_2" },
-    { "id": "client-3", "secret": "client-3-secret", "key": "CLIENT_KEY_3" }
+    { "id": "client-1", "secret": "client-1-secret" },
+    { "id": "client-2", "secret": "client-2-secret" },
+    { "id": "client-3", "secret": "client-3-secret" }
   ]
 }
