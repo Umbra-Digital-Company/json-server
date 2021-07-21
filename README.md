@@ -1,4 +1,3 @@
-# nextpay-mock-server
- Mock Server forNextPay to return Client Data for authorization
+# json-server
 
-https://my-json-server.typicode.com/Umbra-Digital-Company/nextpay-mock-server/
+https://my-json-server.typicode.com/Umbra-Digital-Company/json-server/
