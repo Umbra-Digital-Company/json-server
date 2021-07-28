@@ -1,27 +1,32 @@
 {
   "clients": [
-    { "id": "client-1", "secret": "client-1-secret" },
-    { "id": "client-2", "secret": "client-2-secret" },
-    { "id": "client-3", "secret": "client-3-secret" }
+    {
+      "id": "610127f98809d744b47efb8f",
+      "secret": "926b4fe07bfc8a83bc44040c724a20dd75578faa75497b5477f1163fe83468bc"
+    },
+    {
+      "id": "610128128809d744b47efb91",
+      "secret": "d3cd6317a4cd84d63556739e234e4183f5cb77201eaac53b496bd31604112720"
+    }
   ],
   "customers": [
     {
       "id": "customer-1",
-      "client": "client-1",
+      "client": "610127f98809d744b47efb8f",
       "name": "John Doe",
       "email": "john@doe.con",
       "company": "Company 1"
     },
     {
       "id": "customer-2",
-      "client": "client-1",
+      "client": "610127f98809d744b47efb8f",
       "name": "Jane Doe",
       "email": "jane@doe.con",
       "company": "Company 2"
     },
     {
       "id": "customer-3",
-      "client": "client-2",
+      "client": "610128128809d744b47efb91",
       "name": "Josh Doe",
       "email": "josh@doe.con",
       "company": "Company 3"
