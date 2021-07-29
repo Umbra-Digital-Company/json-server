@@ -2,14 +2,19 @@ const jsonServer = require("json-server");
 const server = jsonServer.create();
 const _ = require("lodash");
 const router = jsonServer.router("./db.json");
+const db = router.db;
 const middlewares = jsonServer.defaults();
 const port = process.env.PORT || 3000;
 
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
+/*
+ * NextPay Customer's Endpoints
+ * ============================
+ */
+
 server.get("/nextpay/customers", (req, res) => {
-  const db = router.db;
   const { client_id } = req.query;
   const customers = db.getState().customers;
 
@@ -17,9 +22,16 @@ server.get("/nextpay/customers", (req, res) => {
 });
 
 server.get("/nextpay/customers/:id", (req, res) => {
-  const db = router.db;
   const { client_id } = req.query;
   const customer = db.get("customers").find({ id: req.params.id }).value();
+
+  if (!customer) {
+    return res.json({
+      error: true,
+      statusCode: 404,
+      message: "Customer not found with the provided ID",
+    });
+  }
 
   if (customer.client !== client_id) {
     return res.status(401).json({ message: "Unauthorized request" });
@@ -29,8 +41,6 @@ server.get("/nextpay/customers/:id", (req, res) => {
 });
 
 server.post("/nextpay/customers", (req, res) => {
-  const db = router.db; // Assign the lowdb instance
-
   insert(db, "customers", req.body); // Add a post
 
   res.sendStatus(200);
@@ -47,6 +57,15 @@ server.post("/nextpay/customers", (req, res) => {
       table.push(data).write();
     }
   }
+});
+
+server.patch("/nextpay/customers/:id", (req, res) => {
+  const customerId = req.params.id;
+  console.log(req.body);
+  const customer = db.get("customers").find({ id: customerId }).value();
+  console.log(customer);
+
+  res.json(customer);
 });
 
 server.use(router);

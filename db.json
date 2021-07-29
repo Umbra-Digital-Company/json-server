@@ -11,25 +11,16 @@
   ],
   "customers": [
     {
-      "id": "customer-1",
+      "customer": "Michel Joseph Hodge",
+      "emailAddress": "michel@hodge.com",
       "client": "610127f98809d744b47efb8f",
-      "name": "John Doe",
-      "email": "john@doe.con",
-      "company": "Company 1"
-    },
-    {
-      "id": "customer-2",
-      "client": "610127f98809d744b47efb8f",
-      "name": "Jane Doe",
-      "email": "jane@doe.con",
-      "company": "Company 2"
-    },
-    {
-      "id": "customer-3",
-      "client": "610128128809d744b47efb91",
-      "name": "Josh Doe",
-      "email": "josh@doe.con",
-      "company": "Company 3"
+      "id": "spOBtfV",
+      "company": "Umbra Digital Company",
+      "address": {
+        "province": "Metro Manila",
+        "city": "Taguig City",
+        "barangay": "BGC"
+      }
     }
   ]
 }
