@@ -97,7 +97,6 @@ server.patch("/nextpay/customers/:id", (req, res) => {
 server.delete("/nextpay/customers/:id", (req, res) => {
   const customerId = req.params.id;
   const { client_id } = req.query;
-  const filter = { id: customerId, client: client_id };
 
   // Verify client authorization
   const customer = db.get("customers").find({ id: customerId }).value();
@@ -105,9 +104,7 @@ server.delete("/nextpay/customers/:id", (req, res) => {
   if (client_id !== customer.client) {
     return res.status(401).json({ message: "Unauthorized request" });
   }
-
-  const customers = db.get("customers").value();
-  remove(db, "customers", filter, customers);
+  remove(db, "customers", customerId);
 
   res.json(200);
 
@@ -115,15 +112,14 @@ server.delete("/nextpay/customers/:id", (req, res) => {
    * Checks whether the id of the new data already exists in the DB
    * @param {*} db - DB object
    * @param {String} collection - Name of the array / collection in the DB / JSON file
-   * @param {*} data - Remove record
-   * @param {*} filter - Filter record
+   * @param {*} id - Remove by ID
    */
-  function remove(db, collection, filter, data) {
-    const table = db.get(collection);
-    table
-      .find(filter)
-      .remove(_.omitBy(data, ["id"]))
-      .write();
+  function remove(db, collection, id) {
+    const table = db.get(collection).valueOf();
+    db.set(
+      collection,
+      table.filter((elem) => elem.id !== id && elem.client === client_id)
+    ).write();
   }
 });
 
