@@ -1,4 +1,5 @@
 const jsonServer = require("json-server");
+const { v4: uuidv4 } = require("uuid");
 const server = jsonServer.create();
 const _ = require("lodash");
 const router = jsonServer.router("./db.json");
@@ -16,7 +17,7 @@ server.use(jsonServer.bodyParser);
 
 server.get("/nextpay/customers", (req, res) => {
   const { client_id } = req.query;
-  const customers = db.getState().customers;
+  const customers = db.get("customers").value();
 
   res.json(customers.filter((customer) => customer.client === client_id));
 });
@@ -41,9 +42,13 @@ server.get("/nextpay/customers/:id", (req, res) => {
 });
 
 server.post("/nextpay/customers", (req, res) => {
-  insert(db, "customers", req.body); // Add a post
+  const customerId = uuidv4();
+  const customerData = req.body;
+  customerData.id = customerId;
 
-  res.sendStatus(200);
+  insert(db, "customers", customerData); // Add a post
+
+  res.json(200);
 
   /**
    * Checks whether the id of the new data already exists in the DB
@@ -53,19 +58,78 @@ server.post("/nextpay/customers", (req, res) => {
    */
   function insert(db, collection, data) {
     const table = db.get(collection);
-    if (_.isEmpty(table.find(data).value())) {
-      table.push(data).write();
-    }
+    table.push(data).write();
   }
 });
 
 server.patch("/nextpay/customers/:id", (req, res) => {
   const customerId = req.params.id;
-  console.log(req.body);
-  const customer = db.get("customers").find({ id: customerId }).value();
-  console.log(customer);
+  const { client_id } = req.query;
+  const filter = { id: customerId, client: client_id };
 
-  res.json(customer);
+  // Verify client authorization
+  const customer = db.get("customers").find({ id: customerId }).value();
+
+  if (client_id !== customer.client) {
+    return res.status(401).json({ message: "Unauthorized request" });
+  }
+
+  update(db, "customers", filter, req.body);
+
+  res.json(200);
+
+  /**
+   * Checks whether the id of the new data already exists in the DB
+   * @param {*} db - DB object
+   * @param {String} collection - Name of the array / collection in the DB / JSON file
+   * @param {*} data - Updated record
+   * @param {*} filter - Filter record
+   */
+  function update(db, collection, filter, data) {
+    const table = db.get(collection);
+    table
+      .find(filter)
+      .assign(_.omit(data, ["id"]))
+      .write();
+  }
+});
+
+server.delete("/nextpay/customers/:id", (req, res) => {
+  const customerId = req.params.id;
+  const { client_id } = req.query;
+  const filter = { id: customerId, client: client_id };
+
+  // Verify client authorization
+  const customer = db.get("customers").find({ id: customerId }).value();
+
+  if (client_id !== customer.client) {
+    return res.status(401).json({ message: "Unauthorized request" });
+  }
+
+  const customers = db.get("customers").value();
+  remove(db, "customers", filter, customers);
+
+  res.json(200);
+
+  /**
+   * Checks whether the id of the new data already exists in the DB
+   * @param {*} db - DB object
+   * @param {String} collection - Name of the array / collection in the DB / JSON file
+   * @param {*} data - Remove record
+   * @param {*} filter - Filter record
+   */
+  function remove(db, collection, filter, data) {
+    const table = db.get(collection);
+    table
+      .find(filter)
+      .remove(_.omitBy(data, ["id"]))
+      .write();
+  }
+});
+
+// unknown routes
+server.use((req, res) => {
+  throw new Error("Could not find this route.");
 });
 
 server.use(router);

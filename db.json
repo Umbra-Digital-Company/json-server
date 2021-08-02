@@ -13,13 +13,21 @@
     {
       "customer": "Michel Joseph Hodge",
       "emailAddress": "michel@hodge.com",
-      "client": "610127f98809d744b47efb8f",
-      "id": "spOBtfV",
-      "company": "Umbra Digital Company",
       "address": {
         "province": "Metro Manila",
         "city": "Taguig City",
-        "barangay": "BGC"
+        "country": "PH"
+      },
+      "client": "610127f98809d744b47efb8f",
+      "id": "fb8812dc-7638-4172-8b24-1454d2ac47aa"
+    },
+    {
+      "customer": "Ready To Delete",
+      "emailAddress": "testing@delete.com",
+      "client": "610127f98809d744b47efb8f",
+      "id": "c9490d9a-6122-41cf-8975-cf12806c0383",
+      "address": {
+        "country": "US"
       }
     }
   ]
