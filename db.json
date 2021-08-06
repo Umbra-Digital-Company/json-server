@@ -7,6 +7,14 @@
     {
       "id": "610128128809d744b47efb91",
       "secret": "d3cd6317a4cd84d63556739e234e4183f5cb77201eaac53b496bd31604112720"
+    },
+    {
+      "name": "EaCy Digital",
+      "url": "https://eacydigital.com",
+      "clientId": "6108f408e52137432497f41a",
+      "apiKey": "JGP4MD5-QD243JN-M85W1PY-FMG18VK",
+      "createdAt": "2021-08-03T07:45:12.958Z",
+      "state": "active"
     }
   ],
   "customers": [
@@ -15,8 +23,7 @@
       "emailAddress": "michel@hodge.com",
       "address": {
         "province": "Metro Manila",
-        "city": "Taguig City",
-        "country": "PH"
+        "city": "Taguig City"
       },
       "client": "610127f98809d744b47efb8f",
       "id": "fb8812dc-7638-4172-8b24-1454d2ac47aa"
@@ -26,6 +33,112 @@
       "emailAddress": "testing@live.com",
       "client": "610127f98809d744b47efb8f",
       "id": "2aaf566e-8ebc-4d2a-ba39-28596f324249"
+    },
+    {
+      "customer": "Ready To Heroku",
+      "emailAddress": "ready@heroku.com",
+      "client": "610127f98809d744b47efb8f",
+      "id": "914b0b5e-88cf-4190-ae30-3dcf0b3fb11c"
+    },
+    {
+      "client": "610127f98809d744b47efb8f",
+      "customer": "Michel Joseph Hodge",
+      "emailAddress": "michel@hodge.com",
+      "id": "5f5bde4e-3d0d-4f65-a1b5-41982413d263",
+      "address": {
+        "addressLine1": "",
+        "addressLine2": "",
+        "city": "",
+        "province": "Metro Manila",
+        "country": "",
+        "postalCode": ""
+      },
+      "mobileNumber": "98273468276"
+    },
+    {
+      "client": "610127f98809d744b47efb8f",
+      "customer": "Enyel",
+      "emailAddress": "enyel@gmail.com",
+      "id": "4145cd32-d61a-4ed7-8459-53410e62ded9"
+    },
+    {
+      "client": "610127f98809d744b47efb8f",
+      "customer": "asdsad",
+      "emailAddress": "asdsad@sad.asd",
+      "id": "78d66255-b1c2-4cca-9fd2-5b5c1c760973"
+    }
+  ],
+  "invoices": [
+    {
+      "client": "610127f98809d744b47efb8f",
+      "customer": {
+        "id": "4145cd32-d61a-4ed7-8459-53410e62ded9",
+        "name": "Enyel",
+        "emailAddress": "enyel@gmail.com"
+      },
+      "invoice": {
+        "number": "1",
+        "dueDate": "12-24-2021",
+        "amountDue": 5000
+      },
+      "id": "71e499f0-f98f-4ae3-ad6f-768ff91b5485",
+      "status": {
+        "draft": true,
+        "published": false,
+        "open": false,
+        "void": false,
+        "remarks": null
+      }
+    },
+    {
+      "client": "610127f98809d744b47efb8f",
+      "customer": {
+        "id": "fb8812dc-7638-4172-8b24-1454d2ac47aa",
+        "name": "Michel Joseph Hodge",
+        "emailAddress": "michel@hodge.com"
+      },
+      "invoice": {
+        "title": "",
+        "number": "2aa",
+        "dueDate": "12-24-2021",
+        "amountDue": 5000,
+        "description": "",
+        "footer": ""
+      },
+      "id": "c203ff37-e479-4960-890f-511fbceff240",
+      "notes": "",
+      "status": {
+        "draft": true,
+        "published": false,
+        "open": false,
+        "void": false,
+        "remarks": null
+      }
+    },
+    {
+      "client": "610127f98809d744b47efb8f",
+      "customer": {
+        "id": "fb8812dc-7638-4172-8b24-1454d2ac47aa",
+        "name": "Michel Joseph Hodge",
+        "emailAddress": "michel@hodge.com"
+      },
+      "invoice": {
+        "title": "",
+        "number": "4a",
+        "dueDate": "12-24-2021",
+        "amountDue": 5000,
+        "description": "",
+        "footer": ""
+      },
+      "id": "89acb036-cc43-490a-abe8-9ca0a2fc958e",
+      "status": {
+        "draft": false,
+        "published": true,
+        "open": false,
+        "void": true,
+        "remarks": null
+      },
+      "notes": "Hello world!"
     }
   ]
 }
