@@ -42,7 +42,7 @@ const createNewInvoice = (req, res) => {
     const clientId = req.body.client;
     const customerData = {
       client: clientId,
-      customer: req.body.customer.name,
+      name: req.body.customer.name,
       emailAddress: req.body.customer.emailAddress,
       id: customerId,
     };
@@ -58,13 +58,13 @@ const createNewInvoice = (req, res) => {
   // Save invoice data
   req.body.id = uuidv4();
   req.body.customer.id = newCustomerId || req.body.customer.id;
-  req.body.status = {
-    draft: true,
-    published: false,
-    open: false,
-    void: false,
-    remarks: null,
-  };
+  req.body.status = "draft";
+  req.body.publishedDate = "";
+  req.body.voidedDate = "";
+  req.body.paidDate = "";
+  req.body.isOverdue = false;
+  req.body.invoiceLink = "";
+
   const invoiceTable = db.get("invoices");
   invoiceTable.push(req.body).write();
 
@@ -84,7 +84,7 @@ const updateInvoiceById = (req, res) => {
     const clientId = req.body.client;
     const customerData = {
       client: clientId,
-      customer: req.body.customer.name,
+      name: req.body.customer.name,
       emailAddress: req.body.customer.emailAddress,
       id: customerId,
     };
